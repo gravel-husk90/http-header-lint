@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "headerlint"
+version = "0.1.0"
+description = "Lint raw HTTP header blocks with exact line/column error reporting"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "gravel-husk90" }]
+
+[project.scripts]
+headerlint = "headerlint.cli:main"
+
+[tool.setuptools]
+packages = ["headerlint"]
