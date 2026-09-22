@@ -67,6 +67,7 @@ default, so `headerlint -` and plain `headerlint` behave the same.
 | E004 | whitespace between the field name and the `:` |
 | E005 | field name contains a character outside RFC 7230's `token` set |
 | E006 | multiple `Content-Length` headers with conflicting values |
+| E007 | header value contains a bare CR with no following LF |
 
 The first line is recognized as a status line or request line (e.g. `HTTP/1.1
 200 OK`) and skipped, since real header dumps usually include it. A blank

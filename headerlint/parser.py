@@ -116,6 +116,26 @@ def _check_line(raw: str, line_no: int) -> list[Issue]:
             )
             break
 
+    # split_lines() only strips a *trailing* CR from each line, so a bare CR
+    # anywhere else in the value survives into `raw`. That's a line ending a
+    # naive parser can act on even though ours didn't split there — the same
+    # trick behind HTTP response splitting.
+    value = raw[colon + 1 :]
+    cr_idx = value.find("\r")
+    if cr_idx != -1:
+        issues.append(
+            Issue(
+                line_no,
+                colon + 2 + cr_idx,
+                "error",
+                "E007",
+                "embedded CR in header value with no following LF — a bare "
+                "carriage return is treated as a line ending by some "
+                "parsers, letting it splice in an extra header or response "
+                "(CRLF injection / response splitting)",
+            )
+        )
+
     return issues
 
 
