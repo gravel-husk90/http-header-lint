@@ -83,6 +83,12 @@ $ pip install -e .
 $ headerlint --help
 ```
 
+## Tests
+
+```
+$ python -m unittest
+```
+
 ## License
 
 MIT, see [LICENSE](LICENSE).
